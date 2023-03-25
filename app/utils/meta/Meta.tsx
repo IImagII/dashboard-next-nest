@@ -1,10 +1,7 @@
 import Head from 'next/head'
 import { FC } from 'react'
 
-export interface IMeta {
-  title: string
-  description?: string
-}
+import { IMeta } from './meta.interface'
 
 //вспомогательный компонент для оформления то сть делаем заголовок для каждого page
 const Meta: FC<IMeta> = ({ title, description }) => {
@@ -24,6 +21,7 @@ const Meta: FC<IMeta> = ({ title, description }) => {
         ) : (
           <meta name="robots" content="noindex, nofollow" />
         )}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
     </>
   )
