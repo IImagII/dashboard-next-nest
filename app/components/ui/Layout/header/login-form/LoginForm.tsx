@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { FaRegUserCircle } from 'react-icons/fa'
@@ -11,6 +12,8 @@ import { IAuthFields } from '@/ui/Layout/header/login-form/login-form.interface'
 
 import { useAuth } from '@/hooks/useAuth'
 import { useOutside } from '@/hooks/useOutside'
+
+import { menuAnimation } from '@/utils/animations/fade'
 
 import { validEmail } from './login-form.valid'
 
@@ -27,7 +30,8 @@ export const LoginForm: FC = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
+    reset
   } = useForm<IAuthFields>({
     mode: 'onChange' //в данной строке показывается то что ошибки нам будут отдаваться сразу после написания текста
   })
@@ -42,18 +46,28 @@ export const LoginForm: FC = () => {
         name: 'Alex'
       })
     // else if(type==='register' registerSunc(data))
+
+    //делаем чтобы закрывалась форма после регистрации
+    reset() // чтобы очищалась форма
+    setIsShow(false) //чтобы закрывалась форма
   }
 
   return (
     <div className={styles.wrapper} ref={ref}>
       {user ? (
-        <UserAvatar avatarPath={user.avatarPath || ''} />
+        <UserAvatar
+          avatarPath={user.avatarPath || ''}
+          link="/dashboard"
+          title="Перейти в админку"
+        />
       ) : (
         <button onClick={() => setIsShow(!isShow)} className={styles.button}>
           <FaRegUserCircle />
         </button>
       )}
-      {isShow && (
+
+      {/* тут мы вставили анимацию которую настроили в файле utils->animations->fade.ts */}
+      <motion.nav animate={isShow ? 'open' : 'closed'} variants={menuAnimation}>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <Field
             {...register('email', {
@@ -67,6 +81,7 @@ export const LoginForm: FC = () => {
             placeholder="Email"
             error={errors.email}
           />
+
           <Field
             {...register('password', {
               required: 'password is  required',
@@ -90,7 +105,7 @@ export const LoginForm: FC = () => {
             Register
           </button>
         </form>
-      )}
+      </motion.nav>
     </div>
   )
 }

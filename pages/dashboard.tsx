@@ -3,7 +3,7 @@ import { FC } from 'react'
 export interface IDashboard {}
 
 export const Dashboard: FC<IDashboard> = (props: IDashboard) => {
-  return <div></div>
+  return <div>Dashboard</div>
 }
 
 export default Dashboard

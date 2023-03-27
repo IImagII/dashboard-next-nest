@@ -1,16 +1,22 @@
-$gray: #797979;
+@import '../../../assets/styles/mixin.scss';
+$gray: #cacaca;
 
 .input {
-  @apply relative block mb-4 bg-white;
+  @apply relative block mb-5;
+  @include shadow();
   > input {
-    @apply pb-2 w-full  text-base;
+    @apply pb-2 w-full  text-base rounded-md overflow-hidden bg-white block;
     &::placeholder {
       color: $gray;
+      text-align: center;
+    }
+    &:focus-visible {
+      @apply border-primary;
     }
   }
 }
 
 .error {
-  @apply absolute -bottom-5 left-0 w-full text-primary;
+  @apply absolute -bottom-4 left-0 w-full text-primary;
   font-size: 0.75rem;
 }

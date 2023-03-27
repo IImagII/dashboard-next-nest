@@ -6,6 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: #eee9f8;
 }
 a {
   color: inherit;
@@ -13,4 +14,10 @@ a {
 }
 * {
   box-sizing: border-box;
+}
+
+button,
+input {
+  outline: none;
+  border: none;
 }

@@ -4,18 +4,21 @@ import { FC } from 'react'
 
 import styles from '@/ui/UserAvatar/UserAvatar.module.scss'
 
-export const UserAvatar: FC<{ avatarPath: string }> = ({ avatarPath }) => {
+export const UserAvatar: FC<{
+  avatarPath: string
+  link: string
+  title?: string
+}> = ({ avatarPath, link, title }) => {
   return (
-    <Link href="/dashboard">
-      <a>
-        <Image
-          src={avatarPath}
-          alt="avatar"
-          width={40}
-          height={40}
-          className={styles.avatar}
-        />
-      </a>
+    <Link href={link}>
+      <Image
+        title={title}
+        src={avatarPath}
+        alt="avatar"
+        width={50}
+        height={50}
+        className={styles.avatar}
+      />
     </Link>
   )
 }
