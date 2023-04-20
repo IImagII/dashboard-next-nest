@@ -1,9 +1,9 @@
-import { FC, forwardRef } from 'react'
+import {  forwardRef } from 'react'
 
 import styles from '@/ui/Field/Field.module.scss'
 import { IField } from '@/ui/Field/field.interface'
 
-const Field: FC = forwardRef<HTMLInputElement, IField>(
+const Field = forwardRef<HTMLInputElement, IField>(
   ({ error, type = 'text', style, ...rest }, ref) => {
     return (
       <div className={styles.input} style={style}>
