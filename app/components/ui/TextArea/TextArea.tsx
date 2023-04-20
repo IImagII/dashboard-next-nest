@@ -1,9 +1,9 @@
-import { FC, forwardRef } from 'react'
+import {  forwardRef } from 'react'
 
 import styles from '@/ui/TextArea/TextArea.module.scss'
 import { ITextArea } from '@/ui/TextArea/text-area.interface'
 
-const TextArea: FC = forwardRef<HTMLTextAreaElement, ITextArea>(
+const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(
   ({ error, style, ...rest }, ref) => {
     return (
       <div className={styles['editor']} style={style}>
